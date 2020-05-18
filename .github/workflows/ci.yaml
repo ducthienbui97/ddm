@@ -15,13 +15,14 @@ jobs:
       - name: Install ddm
         run: |
           deno install --allow-all -n ddm -f https://raw.githubusercontent.com/ducthienbui97/ddm/master/bundle/ddm.js
-          export PATH="home/runner/.deno/bin:$PATH"
+          /home/runner/.deno/bin/ddm install
+          ls
       - name: Test
         run: |
-          ddm test
+          /home/runner/.deno/bin/ddm test
       - name: Bundle
         run: |
-          ddm bundle src/index.ts bundle/ddm.js
+          /home/runner/.deno/bin/ddm build src/index.ts bundle/ddm.js
       - name: Release
         uses: softprops/action-gh-release@v1
         env:
