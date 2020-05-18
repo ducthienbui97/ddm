@@ -1,6 +1,8 @@
 # Deno dependencies manager - ddm
 
 [![GitLicense](https://gitlicense.com/badge/ducthienbui97/ddm)](https://gitlicense.com/license/ducthienbui97/ddm)
+[![GithubCI](https://github.com/ducthienbui97/ddm/workflows/CI/badge.svg)](https://github.com/ducthienbui97/ddm)
+[![Version](https://img.shields.io/badge/version-0.0.1-blue)](https://github.com/ducthienbui97/ddm/releases)
 
 Manage your deno package with `ddm` and the good old `package.json` file.
 
@@ -8,8 +10,16 @@ Manage your deno package with `ddm` and the good old `package.json` file.
 
 ## Install
 
+Latest released version:
+
 ```sh
-deno install --allow-all -n ddm -f https://raw.githubusercontent.com/ducthienbui97/ddm/bundle/bundle/ddm.js
+deno install --allow-all -n ddm -f https://github.com/ducthienbui97/ddm/releases/download/v0.0.1/ddm.js
+```
+
+or master version:
+
+```
+deno install --allow-all -n ddm -f  https://raw.githubusercontent.com/ducthienbui97/ddm/bundle/bundle/ddm.js
 ```
 
 ## Usage
