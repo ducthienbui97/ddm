@@ -1,5 +1,10 @@
 name: CI
-on: [push]
+on: 
+  push:
+    branches:
+      - master  
+    tags:
+      - v*
 jobs:
   build:
     name: "ci"
@@ -25,14 +30,23 @@ jobs:
           mkdir bundle
           /home/runner/.deno/bin/ddm bundle src/index.ts bundle/ddm.js
       - name: Commit files
+        if: startsWith(github.ref, 'refs/master/')
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
           git commit -m "Rebuild bundle" -a
       - name: Push changes
+        if: startsWith(github.ref, 'refs/master/')
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: 'bundle'
           force: true
+      - name: Release
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            bundle/ddm.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
