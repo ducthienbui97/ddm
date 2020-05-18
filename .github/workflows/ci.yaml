@@ -15,7 +15,7 @@ jobs:
       - name: Install ddm
         run: |
           deno install --allow-all -n ddm -f https://raw.githubusercontent.com/ducthienbui97/ddm/master/bundle/ddm.js
-          export PATH="home/runner/.deno/bin:$PATH"
+          export PATH="/home/runner/.deno/bin:$PATH"
       - name: Test
         run: |
           ddm test
