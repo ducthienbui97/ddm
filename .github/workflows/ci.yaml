@@ -21,7 +21,7 @@ jobs:
           ddm test
       - name: Bundle
         run: |
-          ddm build src/index.ts bundle/ddm.js
+          ddm bundle src/index.ts bundle/ddm.js
       - name: Release
         uses: softprops/action-gh-release@v1
         env:
