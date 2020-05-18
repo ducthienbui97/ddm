@@ -988,8 +988,7 @@ System.register(
           if (typeof flags[friendlyName] === "undefined") {
             if (typeof option.default !== "undefined") {
               flags[friendlyName] = typeof option.default === "function"
-                ? option.default()
-                : option.default;
+                ? option.default() : option.default;
               defaultValues[friendlyName] = true;
             } else if (option.args && option.args[0].optionalValue) {
               flags[friendlyName] = true;
@@ -2428,8 +2427,7 @@ System.register(
               return error;
             }
             const CLIFFY_DEBUG = hasEnvPermissions
-              ? !!Deno.env.get("CLIFFY_DEBUG")
-              : false;
+              ? !!Deno.env.get("CLIFFY_DEBUG") : false;
             showHelp && this.help();
             this.logError(CLIFFY_DEBUG ? error : error.message);
             this.log();
@@ -2787,8 +2785,7 @@ System.register(
               let minCellWidth = Array.isArray(this.options.minCellWidth)
                 ? this.options.minCellWidth[colIndex]
                 : (typeof this.options.minCellWidth === "undefined"
-                  ? const_ts_1.MIN_CELL_WIDTH
-                  : this.options.minCellWidth);
+                  ? const_ts_1.MIN_CELL_WIDTH : this.options.minCellWidth);
               let maxCellWidth = Array.isArray(this.options.maxCellWidth)
                 ? this.options.maxCellWidth[colIndex]
                 : (typeof this.options.maxCellWidth === "undefined"
@@ -3212,13 +3209,11 @@ System.register(
               return [
                 [
                   colors_ts_2.bold("Usage:"),
-                  colors_ts_2.magenta(
-                    `${cmd.getName()}${
-                      cmd.getArgsDefinition()
-                        ? " " + cmd.getArgsDefinition()
-                        : ""
-                    }`,
-                  ),
+                  colors_ts_2.magenta(`${cmd.getName()}${
+                    cmd.getArgsDefinition()
+                      ? " " + cmd.getArgsDefinition()
+                      : ""
+                  }`),
                 ],
                 [
                   colors_ts_2.bold("Version:"),
@@ -3810,8 +3805,7 @@ function _${snakeCase_ts_1.default(command.getPath())}() {` +
               .filter((flag) => typeof flag === "string");
             for (const option of command.getOptions()) {
               const optExcluded = option.conflicts
-                ? [...excluded, ...option.conflicts]
-                : excluded;
+                ? [...excluded, ...option.conflicts] : excluded;
               const flags = option.flags.split(/[, ] */g);
               const flagExcluded = option.collect ? optExcluded : [
                 ...optExcluded,
@@ -3849,8 +3843,7 @@ function _${snakeCase_ts_1.default(command.getPath())}() {` +
               return `'(- *)'{${collect}${flags}}'[${description}]${args}'`;
             } else {
               const excluded = excludedFlags.length
-                ? `(${excludedFlags.join(" ")})`
-                : "";
+                ? `(${excludedFlags.join(" ")})` : "";
               return `'${excluded}'{${collect}${flags}}'[${description}]${args}'`;
             }
           }
@@ -7565,14 +7558,16 @@ System.register(
           constructor(
             parser = new jsonParser_ts_2.default(),
             importMapBuilder = new importMapBuilder_ts_1.default(parser),
+            deno = Deno,
           ) {
             this.parser = parser;
             this.importMapBuilder = importMapBuilder;
+            this.deno = deno;
             this.DEFAULT_PARAMS = [
               "--unstable",
               `--importmap=${constants_ts_2.DEFAULT_IMPORT_MAP}`,
             ];
-            this.IS_WINDOWS = Deno.build.os == "windows";
+            this.IS_WINDOWS = this.deno.build.os == "windows";
             this.OS_SHELL_ENV_NAME = this.IS_WINDOWS ? "ComSpec" : "SHELL";
             this.OS_DEFAULT_SHELL = this.IS_WINDOWS ? "cmd.exe" : "sh";
           }
@@ -7633,7 +7628,7 @@ System.register(
             } else {
               option.cmd = [this.getShell(), "-c", cmd];
             }
-            const process = Deno.run(option);
+            const process = this.deno.run(option);
             const status = await process.status();
             process.close();
             if (status.code !== 0) {
@@ -7642,8 +7637,10 @@ System.register(
           }
           getShell() {
             try {
-              const configuredShell = Deno.env.get(this.OS_SHELL_ENV_NAME);
-              if (configuredShell && Deno.statSync(configuredShell).isFile) {
+              const configuredShell = this.deno.env.get(this.OS_SHELL_ENV_NAME);
+              if (
+                configuredShell && this.deno.statSync(configuredShell).isFile
+              ) {
                 return configuredShell;
               }
             } catch (ignored) {
