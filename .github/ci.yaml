@@ -1,0 +1,37 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    name: ${{ matrix.config.kind }} ${{ matrix.config.os }}
+    runs-on: ${{ matrix.config.os }}
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        config:
+          - os: macOS-latest
+          - os: windows-latest
+          - os: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+      - name: Install deno
+        uses: denolib/setup-deno@master
+        with:
+          deno-version: 1.0.0
+      - name: Install ddm
+        run: |
+          deno install --allow-all -n ddm -f https://raw.githubusercontent.com/ducthienbui97/ddm/master/bundle/ddm.js
+      - name: Test
+        run: dmm test
+      - name: Bundle
+        run: |
+          ddm build src/index.ts bundle/ddm.js
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: development
+          draft: true
+          files: |
+            bundle/ddm.js
