@@ -2,15 +2,9 @@ name: CI
 on: [push, pull_request]
 jobs:
   build:
-    name: ${{ matrix.config.os }}
-    runs-on: ${{ matrix.config.os }}
+    name: "ci"
+    runs-on: ubuntu-latest
     timeout-minutes: 5
-    strategy:
-      matrix:
-        config:
-          - os: macOS-latest
-          - os: windows-latest
-          - os: ubuntu-latest
     steps:
       - name: Clone repository
         uses: actions/checkout@v2
@@ -21,8 +15,7 @@ jobs:
       - name: Install ddm
         run: |
           deno install --allow-all -n ddm -f https://raw.githubusercontent.com/ducthienbui97/ddm/master/bundle/ddm.js
-      - name: Test
-        run: ddm test
+          ddm test
       - name: Bundle
         run: |
           ddm build src/index.ts bundle/ddm.js
