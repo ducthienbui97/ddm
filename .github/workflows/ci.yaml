@@ -23,13 +23,14 @@ jobs:
       - name: Bundle
         run: |
           /home/runner/.deno/bin/ddm bundle src/index.ts bundle/ddm.js
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Rebuild bundle" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          tag_name: development
-          draft: false
-          prerelease: true
-          files: |
-            bundle/ddm.js
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'bundle'
+          force: true
