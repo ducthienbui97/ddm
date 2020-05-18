@@ -22,7 +22,7 @@ jobs:
         run: |
           deno install --allow-all -n ddm -f https://raw.githubusercontent.com/ducthienbui97/ddm/master/bundle/ddm.js
       - name: Test
-        run: dmm test
+        run: ddm test
       - name: Bundle
         run: |
           ddm build src/index.ts bundle/ddm.js
