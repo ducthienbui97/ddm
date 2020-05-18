@@ -38,20 +38,45 @@ deno install --allow-all -n ddm -f https://raw.githubusercontent.com/ducthienbui
 
 ### `ddm install`
 
-Without version:
+#### Without version:
 
 ```sh
 ddm install http
 ```
 
-With version:
+#### With version:
 
 ```sh
 ddm install http@v0.50.0
 ```
 
-Multiple package:
+#### Multiple package:
 
 ```sh
 ddm install http log fmt
 ```
+### `deno run/cache/bundle/test` scripts:
+
+```sh
+ddm run/cache/bundle/test <Deno OPTIONS>
+```
+
+### `package.json` scripts:
+
+package.json:
+
+```json
+{
+  scripts: {
+    "something" : "some script",
+    "presomething": "some prepare script",
+    "postsomething": "some cleanup script"
+  }
+}
+```
+run:
+
+```sh
+ddm something
+```
+NOTE: scripts writen in `package.json` will override default commands.
