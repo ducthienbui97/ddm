@@ -29,6 +29,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: development
-          draft: true
+          draft: false
           files: |
             bundle/ddm.js
