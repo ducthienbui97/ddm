@@ -1,5 +1,8 @@
 # Deno dependencies manager - ddm
+
 Manage your deno package with `ddm` and the good old `package.json` file.
+
+![demo](demo.gif)
 
 ## Install
 
