@@ -1,5 +1,7 @@
 # Deno dependencies manager - ddm
 
+[![GitLicense](https://gitlicense.com/badge/ducthienbui97/ddm)](https://gitlicense.com/license/ducthienbui97/ddm)
+
 Manage your deno package with `ddm` and the good old `package.json` file.
 
 ![demo](demo.gif)
@@ -67,7 +69,7 @@ package.json:
 
 ```json
 {
-  scripts: {
+  "scripts": {
     "something" : "some script",
     "presomething": "some prepare script",
     "postsomething": "some cleanup script"
