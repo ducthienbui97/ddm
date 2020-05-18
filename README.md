@@ -9,7 +9,7 @@ Manage your deno package with `ddm` and the good old `package.json` file.
 ## Install
 
 ```sh
-deno install --allow-all -n ddm -f https://raw.githubusercontent.com/ducthienbui97/ddm/master/bundle/ddm.js
+deno install --allow-all -n ddm -f https://raw.githubusercontent.com/ducthienbui97/ddm/bundle/bundle/ddm.js
 ```
 
 ## Usage
