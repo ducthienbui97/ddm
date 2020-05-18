@@ -22,6 +22,7 @@ jobs:
           /home/runner/.deno/bin/ddm test
       - name: Bundle
         run: |
+          ls
           /home/runner/.deno/bin/ddm bundle src/index.ts bundle/ddm.js
       - name: Commit files
         run: |
