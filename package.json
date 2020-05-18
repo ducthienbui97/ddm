@@ -1,0 +1,30 @@
+{
+    "name": "ddm",
+    "version": "0.0.1",
+    "description": "Deno Dependencies Manager",
+    "main": "src/index.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ducthienbui97/ddm.git"
+    },
+    "keywords": [
+        "deno",
+        "package.json"
+    ],
+    "author": "Thien Bui <thienbui797@gmail.com>",
+    "license": "BSD-3-Clause",
+    "bugs": {
+        "url": "https://github.com/ducthienbui97/ddm/issues"
+    },
+    "homepage": "https://github.com/ducthienbui97/ddm#readme",
+    "dependencies": {
+        "cliffy": "v0.6.1",
+        "fs": "0.51.0",
+        "path": "0.51.0",
+        "testing": "0.51.0",
+        "mock": "v0.3.0"
+    },
+    "scripts": {
+        "test": "deno test test/*.ts"
+    }
+}
