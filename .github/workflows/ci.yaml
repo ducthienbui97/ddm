@@ -1,5 +1,5 @@
 name: CI
-on: [push, pull_request]
+on: [push]
 jobs:
   build:
     name: "ci"
@@ -22,7 +22,7 @@ jobs:
           /home/runner/.deno/bin/ddm test
       - name: Bundle
         run: |
-          /home/runner/.deno/bin/ddm build src/index.ts bundle/ddm.js
+          /home/runner/.deno/bin/ddm bundle src/index.ts bundle/ddm.js
       - name: Release
         uses: softprops/action-gh-release@v1
         env:
