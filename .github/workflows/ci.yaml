@@ -30,14 +30,14 @@ jobs:
           mkdir bundle
           /home/runner/.deno/bin/ddm bundle src/index.ts bundle/ddm.js
       - name: Commit files
-        if: startsWith(github.ref, 'refs/master/')
+        if: startsWith(github.ref, 'refs/heads/')
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
           git commit -m "Rebuild bundle" -a
       - name: Push changes
-        if: startsWith(github.ref, 'refs/master/')
+        if: startsWith(github.ref, 'refs/heads/')
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
