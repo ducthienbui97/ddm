@@ -14,7 +14,7 @@ jobs:
           deno-version: 1.0.0
       - name: Install ddm
         run: |
-          deno install --allow-all -n ddm -f https://raw.githubusercontent.com/ducthienbui97/ddm/master/bundle/ddm.js
+          deno install --allow-all -n ddm -f https://raw.githubusercontent.com/ducthienbui97/ddm/bundle/bundle/ddm.js
           /home/runner/.deno/bin/ddm install
           ls
       - name: Test
